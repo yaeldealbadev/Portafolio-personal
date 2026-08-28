@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+  /* Fondo principal y texto */
+  --background: #F9F9F8; /* Blanco hueso muy sutil */
+  --foreground: #2C3531; /* Gris carbón casi negro */
+  
+  /* Paleta de acentos Zen */
+  --menta: #8FBC8F;      /* Acentos suaves, etiquetas */
+  --bosque: #4A6B53;     /* Botones y contrastes */
+  --blanco-puro: #FFFFFF; /* Para el fondo de las tarjetas de proyectos */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  /* Registramos tus colores para usarlos en Tailwind */
+  --color-menta: var(--menta);
+  --color-bosque: var(--bosque);
+  --color-tarjeta: var(--blanco-puro);
+
+  /* Tipografía limpia */
+  --font-sans: var(--font-inter), var(--font-geist-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+  --font-heading: var(--font-oswald), var(--font-geist-sans), sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.nav-link {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.5s;
+  z-index: 1;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-top: 2px solid var(--menta);
+  border-bottom: 2px solid var(--menta);
+  transform: scaleY(2);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--blanco-puro);
+  transform: scale(0);
+  opacity: 0;
+  transition: 0.3s;
+  z-index: -1;
+}
+
+.nav-link:hover {
+  color: var(--bosque);
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after {
+  transform: scale(1);
+  opacity: 1;
+}
